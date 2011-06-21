@@ -25,7 +25,7 @@ libmosgame.so: $(COBJS)
 	$(DYNLD) -o libmosgame.so $(COBJS)
 
 obj/%.o: C/%.c C/%.h C/general.h
-	-mkdir -p obj
+	@mkdir -p obj
 	$(CC) $(CFLAGS) -c -o $@ -I./C $< 
 
 MosGame.uo MosGame.ui: SML/*.sig SML/*.sml SML/MosGame.mlp
