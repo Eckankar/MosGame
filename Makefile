@@ -36,7 +36,7 @@ MosGame.uo MosGame.ui: SML/*.sig SML/*.sml SML/MosGame.mlp
 clean:
 	rm -f obj/*.o
 	rm -f *.so
-	rm -f MosGame.{sml,ui,uo}
+	rm -f MosGame.sml MosGame.ui MosGame.uo
 
 test: all
 	mosml -P full test.sml
