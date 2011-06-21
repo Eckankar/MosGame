@@ -1,0 +1,29 @@
+(* vim : set filetype=sml *)
+structure MosGame =
+struct
+    local
+        open Dynlib;
+        val mosgame_lib = dlopen { lib = "./libmosgame.so",
+                                   flag = RTLD_LAZY,
+                                   global = false };
+    in
+
+    datatype color = RGB of int * int * int
+                   | RGBA of int * int * int * int
+
+    type point = int * int
+    type dimensions = int * int
+
+    #include "Colors.sml"
+
+    #include "Display.sig"
+    #include "Display.sml"
+
+    #include "Draw.sig"
+    #include "Draw.sml"
+
+    val init : unit -> unit = app1 (dlsym mosgame_lib "mosgame_init")
+    val quit : unit -> unit = app1 (dlsym mosgame_lib "mosgame_quit")
+
+    end;
+end;

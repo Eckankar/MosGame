@@ -1,0 +1,6 @@
+test.sml
+notes.c
+*.ui
+*.uo
+*.so
+obj/
