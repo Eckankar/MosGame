@@ -6,6 +6,12 @@ M.init ();
 
 val disp = M.Display.create_display (800, 600);
 
+fun processEvents () = case M.Event.poll () of
+    NONE => ()
+  | SOME e => (case e of
+                 M.Event.QuitEvent => quit ()
+               | _ => processEvents ())
+
 datatype updown = Up | Down;
 fun drawStep (1400, Down, n) = drawStep (1400, Up, n)
   | drawStep (0, Up, n) = drawStep (0, Down, n)
@@ -27,6 +33,7 @@ fun drawStep (1400, Down, n) = drawStep (1400, Up, n)
         val _ = M.Display.flip disp;
         val caption = "i = " ^ Int.toString i;
         val _ = M.Display.set_caption caption;
+        val _ = processEvents ();
     in
         drawStep (if dir = Down then i+1 else i-1, dir, n+1)
     end;

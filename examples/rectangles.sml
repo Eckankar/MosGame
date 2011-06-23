@@ -19,5 +19,11 @@ val _ = M.Draw.draw_rectangle disp outlineRect2 M.Green
 val _ = M.Draw.draw_rectangle disp overlappingRect transparentWhite
 val _ = M.Display.flip disp;
 
-fun foo x = foo (x+0)
-val _ = foo 10
+fun processEvents () = case M.Event.poll () of
+    NONE => ()
+  | SOME e => (case e of
+                 M.Event.QuitEvent => quit ()
+               | _ => processEvents ());
+
+fun rep () = (processEvents () ; rep ());
+rep ();

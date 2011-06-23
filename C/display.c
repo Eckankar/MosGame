@@ -28,10 +28,6 @@ EXTERNML value display_create_display(value wDimensions) {
 EXTERNML value display_flip(value wScreen) {
     SDL_Surface *screen = Addr_val(wScreen);
 
-    // TODO: Don't do this.
-    SDL_Event event;
-    while (SDL_PollEvent(&event)) { }
-
     SDL_Flip(screen);
 
     return Val_unit;

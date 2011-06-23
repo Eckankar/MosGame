@@ -10,7 +10,7 @@
 // MosML includes:
 #include <mlvalues.h>		/* For Val_unit, Long_val, String_val, ... */
 #include <alloc.h>		/* For copy_string, alloc_string, ...      */
-//#include <memory.h>		/* For Modify, Push_roots, Pop_roots       */
+#include <memory.h>		/* For Modify, Push_roots, Pop_roots       */
 //#include <str.h>		/* For string_length                       */
 #include <fail.h>		/* For failwith                            */
 
@@ -19,6 +19,14 @@
 #define EXTERNML __declspec(dllexport)
 #else
 #define EXTERNML
+#endif
+
+#ifndef true
+#define true 1
+#endif
+
+#ifndef false
+#define false 0
 #endif
 
 #endif

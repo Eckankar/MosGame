@@ -15,7 +15,7 @@ SDLLIBS=`sdl-config --libs`
 CC=gcc
 DYNLD=ld -shared $(SDLLIBS) $(SDLGFXLIBS)
 
-CFILES=display draw mosgame util
+CFILES=display draw mosgame util event
 COBJS=$(foreach f, $(CFILES), obj/$f.o)
 
 

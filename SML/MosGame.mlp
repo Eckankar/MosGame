@@ -1,9 +1,9 @@
-(* vim : set filetype=sml *)
+(* vim : filetype=sml : *)
 structure MosGame =
 struct
     local
         open Dynlib;
-        val mosgame_lib = dlopen { lib = "./libmosgame.so",
+        val mosgame_lib = dlopen { lib = "libmosgame.so",
                                    flag = RTLD_LAZY,
                                    global = false };
     in
@@ -11,8 +11,12 @@ struct
     datatype color = RGB of int * int * int
                    | RGBA of int * int * int * int
 
+    (* A (x, y) point in our plane. *)
     type point = int * int
+    (* A (w, h) pair of width and height. *)
     type dimensions = int * int
+    (* A (dx, dy) pair of x and y offsets. *)
+    type offset = int * int
 
     #include "Colors.sml"
 
@@ -21,6 +25,9 @@ struct
 
     #include "Draw.sig"
     #include "Draw.sml"
+
+    #include "Event.sig"
+    #include "Event.sml"
 
     val init : unit -> unit = app1 (dlsym mosgame_lib "mosgame_init")
     val quit : unit -> unit = app1 (dlsym mosgame_lib "mosgame_quit")

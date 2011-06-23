@@ -1,0 +1,233 @@
+Key                     ASCII value   Common name
+===========================================================
+KeyBackspace            '\b'          backspace
+KeyTab                  '\t'          tab
+KeyClear                              clear
+KeyReturn               '\r'          return
+KeyPause                              pause
+KeyEscape               '^['          escape
+KeySpace                ' '           space
+KeyExclaim              '!'           exclamation mark
+KeyQuoteDbl             '"'           double quote
+KeyHash                 '#'           hash
+KeyDollar               '$'           dollar
+KeyAmpersand            '&'           ampersand
+KeyQuote                '\''          single quote
+KeyLeftParen            '('           left parenthesis
+KeyRightParen           ')'           right parenthesis
+KeyAsterisk             '*'           asterisk
+KeyPlus                 '+'           plus sign
+KeyComma                ','           comma
+KeyMinus                '-'           minus sign
+KeyPeriod               '.'           period / full stop
+KeySlash                '/'           forward slash
+Key0                    '0'           0
+Key1                    '1'           1
+Key2                    '2'           2
+Key3                    '3'           3
+Key4                    '4'           4
+Key5                    '5'           5
+Key6                    '6'           6
+Key7                    '7'           7
+Key8                    '8'           8
+Key9                    '9'           9
+KeyColon                ':'           colon
+KeySemicolon            ';'           semicolon
+KeyLess                 '<'           less-than sign
+KeyEquals               '='           equals sign
+KeyGreater              '>'           greater-than sign
+KeyQuestion             '?'           question mark
+KeyAt                   '@'           at
+KeyLeftBracket          '['           left bracket
+KeyBackslash            '\\'          backslash
+KeyRightBracket         ']'           right bracket
+KeyCaret                '^'           caret
+KeyUnderscore           '_'           underscore
+KeyBackquote            '`'           grave
+KeyA                    'a'           a
+KeyB                    'b'           b
+KeyC                    'c'           c
+KeyD                    'd'           d
+KeyE                    'e'           e
+KeyF                    'f'           f
+KeyG                    'g'           g
+KeyH                    'h'           h
+KeyI                    'i'           i
+KeyJ                    'j'           j
+KeyK                    'k'           k
+KeyL                    'l'           l
+KeyM                    'm'           m
+KeyN                    'n'           n
+KeyO                    'o'           o
+KeyP                    'p'           p
+KeyQ                    'q'           q
+KeyR                    'r'           r
+KeyS                    's'           s
+KeyT                    't'           t
+KeyU                    'u'           u
+KeyV                    'v'           v
+KeyW                    'w'           w
+KeyX                    'x'           x
+KeyY                    'y'           y
+KeyZ                    'z'           z
+KeyDelete               '^?'          delete
+KeyWorld_0                            world 0
+KeyWorld_1                            world 1
+KeyWorld_2                            world 2
+KeyWorld_3                            world 3
+KeyWorld_4                            world 4
+KeyWorld_5                            world 5
+KeyWorld_6                            world 6
+KeyWorld_7                            world 7
+KeyWorld_8                            world 8
+KeyWorld_9                            world 9
+KeyWorld_10                           world 10
+KeyWorld_11                           world 11
+KeyWorld_12                           world 12
+KeyWorld_13                           world 13
+KeyWorld_14                           world 14
+KeyWorld_15                           world 15
+KeyWorld_16                           world 16
+KeyWorld_17                           world 17
+KeyWorld_18                           world 18
+KeyWorld_19                           world 19
+KeyWorld_20                           world 20
+KeyWorld_21                           world 21
+KeyWorld_22                           world 22
+KeyWorld_23                           world 23
+KeyWorld_24                           world 24
+KeyWorld_25                           world 25
+KeyWorld_26                           world 26
+KeyWorld_27                           world 27
+KeyWorld_28                           world 28
+KeyWorld_29                           world 29
+KeyWorld_30                           world 30
+KeyWorld_31                           world 31
+KeyWorld_32                           world 32
+KeyWorld_33                           world 33
+KeyWorld_34                           world 34
+KeyWorld_35                           world 35
+KeyWorld_36                           world 36
+KeyWorld_37                           world 37
+KeyWorld_38                           world 38
+KeyWorld_39                           world 39
+KeyWorld_40                           world 40
+KeyWorld_41                           world 41
+KeyWorld_42                           world 42
+KeyWorld_43                           world 43
+KeyWorld_44                           world 44
+KeyWorld_45                           world 45
+KeyWorld_46                           world 46
+KeyWorld_47                           world 47
+KeyWorld_48                           world 48
+KeyWorld_49                           world 49
+KeyWorld_50                           world 50
+KeyWorld_51                           world 51
+KeyWorld_52                           world 52
+KeyWorld_53                           world 53
+KeyWorld_54                           world 54
+KeyWorld_55                           world 55
+KeyWorld_56                           world 56
+KeyWorld_57                           world 57
+KeyWorld_58                           world 58
+KeyWorld_59                           world 59
+KeyWorld_60                           world 60
+KeyWorld_61                           world 61
+KeyWorld_62                           world 62
+KeyWorld_63                           world 63
+KeyWorld_64                           world 64
+KeyWorld_65                           world 65
+KeyWorld_66                           world 66
+KeyWorld_67                           world 67
+KeyWorld_68                           world 68
+KeyWorld_69                           world 69
+KeyWorld_70                           world 70
+KeyWorld_71                           world 71
+KeyWorld_72                           world 72
+KeyWorld_73                           world 73
+KeyWorld_74                           world 74
+KeyWorld_75                           world 75
+KeyWorld_76                           world 76
+KeyWorld_77                           world 77
+KeyWorld_78                           world 78
+KeyWorld_79                           world 79
+KeyWorld_80                           world 80
+KeyWorld_81                           world 81
+KeyWorld_82                           world 82
+KeyWorld_83                           world 83
+KeyWorld_84                           world 84
+KeyWorld_85                           world 85
+KeyWorld_86                           world 86
+KeyWorld_87                           world 87
+KeyWorld_88                           world 88
+KeyWorld_89                           world 89
+KeyWorld_90                           world 90
+KeyWorld_91                           world 91
+KeyWorld_92                           world 92
+KeyWorld_93                           world 93
+KeyWorld_94                           world 94
+KeyWorld_95                           world 95
+KeyKp0                                keypad 0
+KeyKp1                                keypad 1
+KeyKp2                                keypad 2
+KeyKp3                                keypad 3
+KeyKp4                                keypad 4
+KeyKp5                                keypad 5
+KeyKp6                                keypad 6
+KeyKp7                                keypad 7
+KeyKp8                                keypad 8
+KeyKp9                                keypad 9
+KeyKpPeriod             '.'           keypad period
+KeyKpDivide             '/'           keypad divide
+KeyKpMultiply           '*'           keypad multiply
+KeyKpMinus              '-'           keypad minus
+KeyKpPlus               '+'           keypad plus
+KeyKpEnter              '\r'          keypad enter
+KeyKpEquals             '='           keypad equals
+KeyUp                                 up arrow
+KeyDown                               down arrow
+KeyRight                              right arrow
+KeyLeft                               left arrow
+KeyInsert                             insert
+KeyHome                               home
+KeyEnd                                end
+KeyPageUp                             page up
+KeyPageDown                           page down
+KeyF1                                 F1
+KeyF2                                 F2
+KeyF3                                 F3
+KeyF4                                 F4
+KeyF5                                 F5
+KeyF6                                 F6
+KeyF7                                 F7
+KeyF8                                 F8
+KeyF9                                 F9
+KeyF10                                F10
+KeyF11                                F11
+KeyF12                                F12
+KeyF13                                F13
+KeyF14                                F14
+KeyF15                                F15
+KeyNumLock                            numlock
+KeyCapsLock                           capslock
+KeyScrollLock                         scroll lock
+KeyRShift                             right shift
+KeyLShift                             left shift
+KeyRCtrl                              right ctrl
+KeyLCtrl                              left ctrl
+KeyRAlt                               right alt / alt gr
+KeyLAlt                               left alt
+KeyRMeta                              right meta
+KeyLMeta                              left meta
+KeyLSuper                             left windows key
+KeyRSuper                             right windows key
+KeyMode                               mode shift
+KeyCompose                            compose
+KeyHelp                               help
+KeyPrint                              print-screen
+KeySysReq                             SysRq
+KeyBreak                              break
+KeyMenu                               menu
+KeyPower                              power
+KeyEuro                               euro
+KeyUndo                               undo
