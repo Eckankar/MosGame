@@ -1,6 +1,6 @@
 structure Event :> EVENT =
 struct
-    (* datatype event from the .sig {{{ *)
+    (* datatypes from the .sig {{{ *)
     (* Represents an event the application receives. *)
     datatype event =
         (* Produced when the application gains/loses focus in some way.
@@ -34,6 +34,26 @@ struct
       | QuitEvent
       (* XXX: UserEvent left out for now. *)
       (* TODO: SysWMEvent. *)
+    (* The different types of events that exist.
+     * Used for filtering. *)
+    and eventtype =
+        Activation
+      | Keyboard
+      | MouseMotion
+      | MouseButton
+      | Resize
+      | Expose
+      | Quit
+    (* When allowed to pass more than one event as filter,
+     * this type is used.
+     * EventTypes [e1, ..., en] represents the events of types e1, ..., en.
+     * NoEvents is equivalent to an EventTypes [].
+     * AllEvents is equivalent to an EventTypes containing all different event
+     * types. *)
+    and eventfilter =
+        NoEvents
+      | AllEvents
+      | EventTypes of eventtype list
 
     (* The types of focus that exist for ActivationEvent
      * MouseFocus = focus of the mouse,
@@ -292,7 +312,7 @@ struct
     (* The state of a mouse button. *)
     and mousestate =
         LeftMouseButtonDown
-      | MiddleMouseButtondown
+      | MiddleMouseButtonDown
       | RightMouseButtonDown
     (* A mouse button *)
     and mousebutton =
@@ -313,4 +333,13 @@ struct
      * If none is available, it waits for one to be so. *)
     val wait : unit -> event =
         app1 (dlsym mosgame_lib "event_wait");
+
+    (* Gets a list of all events currently in the event queue, which
+     * match the given filter. *)
+    val get : eventfilter -> event list =
+        app1 (dlsym mosgame_lib "event_get");
+
+    (* Clears all events matching the filter from the event queue. *)
+    val clear : eventfilter -> unit =
+        app1 (dlsym mosgame_lib "event_clear");
 end;

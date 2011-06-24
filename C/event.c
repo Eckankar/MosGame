@@ -9,15 +9,41 @@ EXTERNML value event_pump(value null) {
     return Val_unit;
 }
 
-// If cond is true, then it attaches a new link
-// to the list at *container[index], containing Atom(tag).
+// Prepends a new link containing val to ls, moving ls to point
+// to the newly inserted link.
+//
+// Note: Allocation will occur, so *ls and val must be rooted.
+void prepend_to_list(value *ls, value val) {
+    value link = alloc(2, Cons_tag);
+
+    modify(&Field(link, 0), val);
+    modify(&Field(link, 1), *ls);
+
+    *ls = link;
+}
+
+// Appends a new link containing val after ls, moving ls to 
+// point to the newly inserted link.
+//
+// ls must be a Cons!
+//
+// Note: Allocation will occur, so *ls and val must be rooted.
+void append_to_list(value *ls, value val) {
+    value link = alloc(2, Cons_tag);
+
+    modify(&Field(link, 0), val);
+    modify(&Field(link, 1), Field(*ls, 1));
+    modify(&Field(*ls, 1), link);
+
+    *ls = link;
+}
+
+// If cond is true, then it prepends a new link
+// to the list at the given index in the *container-tuple,
+// containing Atom(tag).
 //
 // Note: Allocation will occur, so container must be rooted.
-void attach_to_list_if(value *container, int index, int cond, int tag) {
-#define Nil_tag 0
-#define Cons_tag 1
-#define Val_nil Atom(0)
-
+void prepend_tag_to_list_if(value *container, int index, int cond, int tag) {
     if (cond) {
         value link = alloc(2, Cons_tag);
 
@@ -26,43 +52,42 @@ void attach_to_list_if(value *container, int index, int cond, int tag) {
 
         modify(&Field(*container, index), link);
     }
-
 }
 
-// If bitfield & flag is true, then it attaches a new link
-// to the list at *container[index], containing Atom(tag).
+
+// If bitfield & flag is true, then it prepend a new link
+// to the list at the given index in the *container-tuple,
+// containing Atom(tag).
 //
 // Note: Allocation will occur, so container must be rooted.
-void attach_to_list_if_set(value *container, int index,
+void prepend_tag_to_list_if_set(value *container, int index,
                             int bitfield, int flag, int tag) {
-    attach_to_list_if(container, index, bitfield & flag, tag);
+    prepend_tag_to_list_if(container, index, bitfield & flag, tag);
 }
 
 // Parses an SDL_Event, and returns a corresponding SML event.
-value Event_val(SDL_Event *event, int *success) {
+int Event_val(SDL_Event *event, value *ret) {
     // list datatype defines:
     switch (event->type) {
         case SDL_ACTIVEEVENT: {
-            *success = true;
-
             Push_roots(res, 1);
             res[0] = alloc(2, ActivationEvent);
             modify(&Field(res[0], 0), Val_bool(event->active.gain));
             modify(&Field(res[0], 1), Val_nil);
 
-            attach_to_list_if_set(&res[0], 1, event->active.state,
+            prepend_tag_to_list_if_set(&res[0], 1, event->active.state,
                                   SDL_APPMOUSEFOCUS, MouseFocus);
-            attach_to_list_if_set(&res[0], 1, event->active.state,
+            prepend_tag_to_list_if_set(&res[0], 1, event->active.state,
                                   SDL_APPINPUTFOCUS, InputFocus);
-            attach_to_list_if_set(&res[0], 1, event->active.state,
+            prepend_tag_to_list_if_set(&res[0], 1, event->active.state,
                                   SDL_APPACTIVE, AppFocus);
 
             Pop_roots();
-            return res[0];
+            *ret = res[0];
+            return true;
         }
         case SDL_KEYDOWN:
         case SDL_KEYUP: {
-            *success = true;
             Push_roots(res, 1);
             res[0] = alloc(3, KeyboardEvent);
 
@@ -315,48 +340,48 @@ value Event_val(SDL_Event *event, int *success) {
 
             modify(&Field(res[0], 2), Val_nil);
             // Shift
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_LSHIFT, KeyModLShift);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_SHIFT, KeyModShift);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_RSHIFT, KeyModRShift);
             // Alt
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_LALT, KeyModLAlt);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_ALT, KeyModAlt);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_RALT, KeyModRAlt);
             // Ctrl
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_LCTRL, KeyModLCtrl);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_CTRL, KeyModCtrl);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_RCTRL, KeyModRCtrl);
             // Meta
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_LMETA, KeyModLMeta);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_META, KeyModMeta);
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_RMETA, KeyModRMeta);
             // Num
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_NUM, KeyModNum);
             // Caps
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_CAPS, KeyModCaps);
             // Mode
-            attach_to_list_if_set(&res[0], 2, event->key.keysym.mod,
+            prepend_tag_to_list_if_set(&res[0], 2, event->key.keysym.mod,
                                   KMOD_MODE, KeyModMode);
 
             Pop_roots();
-            return res[0];
+            *ret = res[0];
+            return true;
         }
         case SDL_MOUSEMOTION: {
-            *success = true;
             Push_roots(res, 1);
             res[0] = alloc(3, MouseMotionEvent);
 
@@ -375,19 +400,19 @@ value Event_val(SDL_Event *event, int *success) {
             // Third entry in the event: List of pressed buttons.
             modify(&Field(res[0], 2), Val_nil);
 
-            attach_to_list_if_set(&res[0], 2, event->motion.state,
+            prepend_tag_to_list_if_set(&res[0], 2, event->motion.state,
                                   SDL_BUTTON(1), LeftMouseButtonDown);
-            attach_to_list_if_set(&res[0], 2, event->motion.state,
+            prepend_tag_to_list_if_set(&res[0], 2, event->motion.state,
                                   SDL_BUTTON(2), MiddleMouseButtonDown);
-            attach_to_list_if_set(&res[0], 2, event->motion.state,
+            prepend_tag_to_list_if_set(&res[0], 2, event->motion.state,
                                   SDL_BUTTON(3), RightMouseButtonDown);
 
             Pop_roots();
-            return res[0];
+            *ret = res[0];
+            return true;
         }
         case SDL_MOUSEBUTTONDOWN:
         case SDL_MOUSEBUTTONUP: {
-            *success = true;
             Push_roots(res, 1);
             res[0] = alloc(3, MouseButtonEvent);
 
@@ -419,10 +444,10 @@ value Event_val(SDL_Event *event, int *success) {
             modify(&Field(res[0], 2), pos);
 
             Pop_roots();
-            return res[0];
+            *ret = res[0];
+            return true;
         }
         case SDL_VIDEORESIZE: {
-            *success = true;
             Push_roots(res, 1);
 
             // First entry in event: New dimensions
@@ -432,19 +457,19 @@ value Event_val(SDL_Event *event, int *success) {
             modify(&Field(res[0], 1), dims);
 
             Pop_roots();
-            return res[0];
+            *ret = res[0];
+            return true;
         }
         case SDL_VIDEOEXPOSE:
-            *success = true;
-            return Atom(ExposeEvent);
+            *ret = Atom(ExposeEvent);
+            return true;
         case SDL_QUIT:
-            *success = true;
-            return Atom(QuitEvent);
+            *ret = Atom(QuitEvent);
+            return true;
         default:
-            *success = false;
-            return Val_unit;
+            *ret = Val_unit;
+            return false;
     }
-    return Val_unit;
 }
 
 // ML type: unit -> event option
@@ -453,14 +478,11 @@ EXTERNML value event_poll(value null) {
     SDL_Event event;
 
     value ret;
-    int success = false;
-    while (!success) {
+    do {
         if (!SDL_PollEvent(&event)) {
             return NONE;
         }
-
-        ret = Event_val(&event, &success);
-    }
+    } while (!Event_val(&event, &ret));
 
     Push_roots(r, 1);
     r[0] = ret;
@@ -479,12 +501,88 @@ EXTERNML value event_wait(value null) {
     SDL_Event event;
 
     value ret;
-    int success = false;
-    while (!success) {
+    do {
         SDL_WaitEvent(&event);
-        ret = Event_val(&event, &success);
-    }
+    } while (Event_val(&event, &ret));
 
     return ret;
 }
 
+// Converts an eventfilter to a SDL event mask.
+uint32 mask_from_eventfilter(value filter) {
+    uint32 mask;
+
+    switch (Tag_val(filter)) {
+        case AllEvents:
+            mask = SDL_ALLEVENTS;
+            break;
+        case NoEvents:
+            mask = SDL_NOEVENTS;
+            break;
+        case EventTypes:
+            mask = SDL_NOEVENTS;
+            value ls = Field(filter, 0);
+
+            while (Tag_val(ls) != Nil_tag) {
+                switch (Tag_val(Field(ls, 0))) {
+                    case Activation: mask |= SDL_ACTIVEEVENTMASK; break;
+                    case Expose: mask |= SDL_VIDEOEXPOSEMASK; break;
+                    case Keyboard: mask |= SDL_KEYDOWNMASK | SDL_KEYUPMASK; break;
+                    case MouseButton: mask |= SDL_MOUSEBUTTONDOWNMASK
+                                            | SDL_MOUSEBUTTONUPMASK; break;
+                    case MouseMotion: mask |= SDL_MOUSEMOTIONMASK; break;
+                    case Quit: mask |= SDL_QUITMASK; break;
+                    case Resize: mask |= SDL_VIDEORESIZEMASK; break;
+                }
+
+                ls = Field(ls, 1);
+            }
+            break;
+    }
+
+    return mask;
+}
+
+// ML type: eventfilter -> event list
+// Gets a list of all events currently in the event queue, which match
+// the given filter.
+EXTERNML value event_get(value filter) {
+    uint32 mask = mask_from_eventfilter(filter);
+
+    SDL_Event event;
+    Push_roots(r, 3);
+    // r[0] = head of list
+    // r[1] = the element before the tail
+    // Except in the beginning, where both are []
+    // 
+    // r[2] = working element we need rooted later.
+    r[0] = r[1] = Val_nil;
+
+    SDL_PumpEvents();
+    while (SDL_PeepEvents(&event, 1, SDL_GETEVENT, mask) == 1) {
+        if (Event_val(&event, &r[2])) {
+            printf("%d\n", Tag_val(r[0]));
+            if (Tag_val(r[0]) == Nil_tag) {
+                prepend_to_list(&r[1], r[2]);
+                r[0] = r[1];
+            } else {
+                append_to_list(&r[1], r[2]);
+            }
+        }
+    }
+
+    Pop_roots();
+    return r[0];
+}
+
+// ML type: eventfilter -> unit
+// Clears all events matching the filter from the event queue.
+EXTERNML value event_clear(value filter) {
+    uint32 mask = mask_from_eventfilter(filter);
+    SDL_Event event;
+
+    SDL_PumpEvents();
+    while (SDL_PeepEvents(&event, 1, SDL_GETEVENT, mask) == 1) { }
+
+    return Val_unit;
+}

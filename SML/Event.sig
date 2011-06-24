@@ -33,6 +33,26 @@ sig
       | QuitEvent
       (* XXX: UserEvent left out for now. *)
       (* TODO: SysWMEvent. *)
+    (* The different types of events that exist.
+     * Used for filtering. *)
+    and eventtype =
+        Activation
+      | Keyboard
+      | MouseMotion
+      | MouseButton
+      | Resize
+      | Expose
+      | Quit
+    (* When allowed to pass more than one event as filter,
+     * this type is used.
+     * EventTypes [e1, ..., en] represents the events of types e1, ..., en.
+     * NoEvents is equivalent to an EventTypes [].
+     * AllEvents is equivalent to an EventTypes containing all different event
+     * types. *)
+    and eventfilter =
+        NoEvents
+      | AllEvents
+      | EventTypes of eventtype list
 
     (* The types of focus that exist for ActivationEvent
      * MouseFocus = focus of the mouse,
@@ -291,7 +311,7 @@ sig
     (* The state of a mouse button. *)
     and mousestate =
         LeftMouseButtonDown
-      | MiddleMouseButtondown
+      | MiddleMouseButtonDown
       | RightMouseButtonDown
     (* A mouse button *)
     and mousebutton =
@@ -308,4 +328,12 @@ sig
     (* Returns a pending event.
      * If none is available, it waits for one to be so. *)
     val wait : unit -> event;
+
+    (* Gets a list of all events currently in the event queue, which
+     * match the given filter. *)
+    val get : eventfilter -> event list
+
+    (* Clears all events matching the filter from the event queue. *)
+    val clear : eventfilter -> unit;
+
 end;

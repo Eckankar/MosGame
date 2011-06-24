@@ -3,7 +3,7 @@
 
 #include "general.h"
 
-// The event types in ASCII-sorted order. (KEEP THEM THAT WAY!)
+// The events in ASCII-sorted order. (KEEP THEM THAT WAY!)
 enum EVENT {
     ActivationEvent,
     ExposeEvent,
@@ -12,6 +12,24 @@ enum EVENT {
     MouseMotionEvent,
     QuitEvent,
     ResizeEvent
+};
+
+// The event types in ASCII-sorted order. (KEEP THEM THAT WAY!)
+enum EVENTTYPE {
+    Activation,
+    Expose,
+    Keyboard,
+    MouseButton,
+    MouseMotion,
+    Quit,
+    Resize
+};
+
+// The event filters in ASCII-sorted order. (KEEP THEM THAT WAY!)
+enum EVENTFILTER {
+    AllEvents,
+    EventTypes,
+    NoEvents
 };
 
 // The focus types in ASCII-sorted order. (KEEP THEM THAT WAY!)
@@ -309,5 +327,13 @@ EXTERNML value event_poll(value null);
 // Returns a pending event. If none is available, it waits for one to be so.
 EXTERNML value event_wait(value null);
 
+// ML type: eventfilter -> event list
+// Gets a list of all events currently in the event queue, which match
+// the given filter.
+EXTERNML value event_get(value filter);
+
+// ML type: eventfilter -> unit
+// Clears all events matching the filter from the event queue.
+EXTERNML value event_clear(value filter);
 #endif
 
