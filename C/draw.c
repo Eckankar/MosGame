@@ -51,7 +51,7 @@ EXTERNML value draw_draw_pixel(value wScreen, value wPos, value wColor) {
     return Val_unit;
 }
 
-// ML type: surface -> rectangle -> color -> unit 
+// ML type: surface -> rectangle -> color -> unit
 // Draws a rectangle of the given color on the surface.
 EXTERNML value draw_draw_rectangle(value wScreen, value wRect, value wColor) {
     SDL_Surface *screen = Addr_val(wScreen);
@@ -75,5 +75,28 @@ EXTERNML value draw_draw_rectangle(value wScreen, value wRect, value wColor) {
                                   colorr, colorg, colorb, colora);
         }
     }
+
+    return Val_unit;
 }
 
+// ML type: surface -> circle -> color -> unit
+// Draws a circle of the given color on the surface.
+EXTERNML value draw_draw_circle(value wScreen, value wCircle, value wColor) {
+    SDL_Surface *screen = Addr_val(wScreen);
+
+    int x = Long_val(Field(Field(wCircle, 0), 0)),
+        y = Long_val(Field(Field(wCircle, 0), 1)),
+        r = Long_val(Field(wCircle, 1)),
+        colorr = Long_val(Field(wColor, 0)),
+        colorg = Long_val(Field(wColor, 1)),
+        colorb = Long_val(Field(wColor, 2)),
+        colora = Tag_val(wColor) == RGBA ? Long_val(Field(wColor, 3)) : 255;
+
+    if (Tag_val(wCircle) == FilledCircle) {
+        filledCircleRGBA(screen, x, y, r, colorr, colorg, colorb, colora);
+    } else {
+        circleRGBA(screen, x, y, r, colorr, colorg, colorb, colora);
+    }
+
+    return Val_unit;
+}

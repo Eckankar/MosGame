@@ -13,6 +13,19 @@ val Rectangle : point * dimensions * int -> rectangle
    The rectangle lies from (x, y) to (x+w-1, y+h-1) *)
 val FilledRectangle : point * dimensions -> rectangle
 
+(* Represents a rectangle to be drawn on screen *)
+type circle
+
+(* Creates a non-filled circle.
+   Input: ((x, y), r)
+   The rectangle has its centre in (x, y), and has radius r. *)
+val Circle : point * int -> circle
+(* Creates a filled circle.
+   Input: ((x, y), r)
+   The rectangle has its centre in (x, y), and has radius r. *)
+val FilledCircle : point * int -> circle
+
+
 (* Draw a dot of the given color at the given point. *)
 val draw_pixel : Display.surface -> point -> color -> unit
 
@@ -23,4 +36,6 @@ val draw_line : Display.surface -> point -> point -> color -> bool -> unit;
 (* Draw the given rectangle, with the given color. *)
 val draw_rectangle : Display.surface -> rectangle -> color -> unit
 
+(* Draw the given rectangle, with the given color. *)
+val draw_circle : Display.surface -> circle -> color -> unit
 end;
