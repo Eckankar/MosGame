@@ -44,3 +44,7 @@ test: all
 install: all
 	install -t $(MOSMLLIB) MosGame.ui MosGame.uo
 	install -t $(NORMALLIB) libmosgame.so  
+
+install-sym: all
+	ln -fst $(NORMALLIB) $(CURDIR)/libmosgame.so
+	ln -fst $(MOSMLLIB) $(CURDIR)/MosGame.ui $(CURDIR)/MosGame.uo
