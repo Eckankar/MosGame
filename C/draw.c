@@ -7,7 +7,7 @@
 // If wAntialias is true, then the line will be antialiased.
 EXTERNML value draw_draw_line(value wScreen, value wStart, value wEnd,
                                              value wColor, value wAntiAlias) {
-    SDL_Surface *screen = Addr_val(wScreen);
+    SDL_Surface *screen = (SDL_Surface *)Addr_val(wScreen);
 
     int startx = Long_val(Field(wStart, 0)),
         starty = Long_val(Field(wStart, 1)),
@@ -37,7 +37,7 @@ EXTERNML value draw_draw_line(value wScreen, value wStart, value wEnd,
 // ML type: surface -> point -> color -> unit
 // Draws a pixel on the surface.
 EXTERNML value draw_draw_pixel(value wScreen, value wPos, value wColor) {
-    SDL_Surface *screen = Addr_val(wScreen);
+    SDL_Surface *screen = (SDL_Surface *)Addr_val(wScreen);
 
     int x = Long_val(Field(wPos, 0)),
         y = Long_val(Field(wPos, 1)),
@@ -54,7 +54,7 @@ EXTERNML value draw_draw_pixel(value wScreen, value wPos, value wColor) {
 // ML type: surface -> rectangle -> color -> unit
 // Draws a rectangle of the given color on the surface.
 EXTERNML value draw_draw_rectangle(value wScreen, value wRect, value wColor) {
-    SDL_Surface *screen = Addr_val(wScreen);
+    SDL_Surface *screen = (SDL_Surface *)Addr_val(wScreen);
 
     int x = Long_val(Field(Field(wRect, 0), 0)),
         y = Long_val(Field(Field(wRect, 0), 1)),
@@ -82,7 +82,7 @@ EXTERNML value draw_draw_rectangle(value wScreen, value wRect, value wColor) {
 // ML type: surface -> circle -> color -> unit
 // Draws a circle of the given color on the surface.
 EXTERNML value draw_draw_circle(value wScreen, value wCircle, value wColor) {
-    SDL_Surface *screen = Addr_val(wScreen);
+    SDL_Surface *screen = (SDL_Surface *)Addr_val(wScreen);
 
     int x = Long_val(Field(Field(wCircle, 0), 0)),
         y = Long_val(Field(Field(wCircle, 0), 1)),
