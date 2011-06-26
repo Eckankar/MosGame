@@ -36,6 +36,6 @@ val draw_line : Display.surface -> point -> point -> color -> bool -> unit;
 (* Draw the given rectangle, with the given color. *)
 val draw_rectangle : Display.surface -> rectangle -> color -> unit
 
-(* Draw the given rectangle, with the given color. *)
+(* Draw the given circle, with the given color. *)
 val draw_circle : Display.surface -> circle -> color -> unit
 end;
