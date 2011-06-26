@@ -94,6 +94,8 @@ EXTERNML value draw_draw_circle(value wScreen, value wCircle, value wColor) {
 
     if (Tag_val(wCircle) == FilledCircle) {
         filledCircleRGBA(screen, x, y, r, colorr, colorg, colorb, colora);
+    } else if (Tag_val(wCircle) == AntiAliasedCircle) {
+        aacircleRGBA(screen, x, y, r, colorr, colorg, colorb, colora);
     } else {
         circleRGBA(screen, x, y, r, colorr, colorg, colorb, colora);
     }

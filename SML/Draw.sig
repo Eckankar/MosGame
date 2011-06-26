@@ -20,6 +20,10 @@ type circle
    Input: ((x, y), r)
    The rectangle has its centre in (x, y), and has radius r. *)
 val Circle : point * int -> circle
+(* Creates a non-filled circle, which is anti-aliased.
+   Input: ((x, y), r)
+   The rectangle has its centre in (x, y), and has radius r. *)
+val AntiAliasedCircle : point * int -> circle
 (* Creates a filled circle.
    Input: ((x, y), r)
    The rectangle has its centre in (x, y), and has radius r. *)

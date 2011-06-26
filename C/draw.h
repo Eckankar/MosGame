@@ -17,6 +17,7 @@ enum RECTANGLETAGS {
 
 // The circle tags in order. (IMPORTANT TO KEEP THESE IN ASCII-SORTED ORDER)
 enum CIRCLETAGS {
+    AntiAliasedCircle,
     Circle,
     FilledCircle
 };
