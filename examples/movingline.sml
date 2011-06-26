@@ -28,7 +28,7 @@ fun drawStep (1400, Down, n) = drawStep (1400, Up, n)
           | 4 => M.RGB (pos, 0, 255)
           | 5 => M.RGB (255, 0, 255-pos)
 
-        val _ = M.Display.fill disp M.Black;
+        val _ = M.Surface.fill disp M.Black;
         val _ = M.Draw.draw_line disp (0, i) (i, 0) color true;
         val _ = M.Display.flip disp;
         val caption = "i = " ^ Int.toString i;

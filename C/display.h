@@ -11,10 +11,6 @@ EXTERNML value display_create_display(value wDimensions);
 // Switches the double-buffers.
 EXTERNML value display_flip(value wScreen);
 
-// ML type: surface -> Draw.color -> unit
-// Fills the surface with the given color.
-EXTERNML value display_fill(value wScreen, value wColor);
-
 // ML type: string -> unit
 // Sets the caption of the current window.
 EXTERNML value display_set_caption(value wCaption);

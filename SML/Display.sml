@@ -8,9 +8,6 @@ struct
     val flip : surface -> unit =
         app1 (dlsym mosgame_lib "display_flip");
 
-    val fill : surface -> color -> unit =
-        app2 (dlsym mosgame_lib "display_fill");
-
     val set_caption : string -> unit =
         app1 (dlsym mosgame_lib "display_set_caption");
 

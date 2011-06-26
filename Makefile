@@ -17,7 +17,7 @@ SDLFLAGS=`sdl-config --cflags`
 CFLAGS=-Dunix -O2 $(OPTS) -I$(MOSMLINCLUDES) $(SDLFLAGS)
 DYNLDFLAGS=$(SDLLIBS) $(SDLGFXLIBS) $(SDLIMAGELIBS)
 
-CFILES=display draw mosgame util event image
+CFILES=display draw mosgame util event image surface
 COBJS=$(foreach f, $(CFILES), obj/$f.o)
 
 
