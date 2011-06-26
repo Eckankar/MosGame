@@ -1,6 +1,6 @@
 structure Display :> DISPLAY =
 struct
-    type surface = int
+    type surface = Surface.surface
 
     val create_display : dimensions -> surface =
         app1 (dlsym mosgame_lib "display_create_display");

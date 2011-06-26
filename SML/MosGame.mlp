@@ -20,6 +20,9 @@ struct
 
     #include "Colors.sml"
 
+    #include "Surface.sig"
+    #include "Surface.sml"
+
     #include "Display.sig"
     #include "Display.sml"
 
@@ -28,6 +31,9 @@ struct
 
     #include "Event.sig"
     #include "Event.sml"
+
+    #include "Image.sig"
+    #include "Image.sml"
 
     val init : unit -> unit = app1 (dlsym mosgame_lib "mosgame_init")
     val quit : unit -> unit = app1 (dlsym mosgame_lib "mosgame_quit")

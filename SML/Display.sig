@@ -1,7 +1,6 @@
 signature DISPLAY =
 sig
-    (* Represents a MosGame display surface. *)
-    type surface
+    type surface = Surface.surface
 
     (* Creates a new display of the given dimensions. *)
     val create_display : dimensions -> surface

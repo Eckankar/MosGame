@@ -14,6 +14,7 @@ In order to compile the library, you need:
 * [Moscow ML](http://github.com/kfl/mosml)
 * [SDL](http://www.libsdl.org/)
 * [SDL_gfx](http://www.ferzkopp.net/joomla/content/view/19/14/)
+* [SDL_image](http://www.libsdl.org/projects/SDL_image/)
 
 ## Compliation + installation
 

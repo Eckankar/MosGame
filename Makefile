@@ -1,28 +1,30 @@
 # Makefile for MLDraw
 
 MOSMLC=mosmlc
+CC=gcc
+DYNLD=ld -shared
+
 MOSMLINCLUDES=/home/sebbe/build/mosml/include
 MOSMLLIB=/usr/lib/mosml
 NORMALLIB=/usr/lib
 
+SDLLIBS=`sdl-config --libs`
+SDLGFXLIBS=-lSDL_gfx
+SDLIMAGELIBS=-lSDL_image
+
 OPTS=-fno-defer-pop
 SDLFLAGS=`sdl-config --cflags`
 CFLAGS=-Dunix -O2 $(OPTS) -I$(MOSMLINCLUDES) $(SDLFLAGS)
+DYNLDFLAGS=$(SDLLIBS) $(SDLGFXLIBS) $(SDLIMAGELIBS)
 
-SDLGFXLIBS=-lSDL_gfx
-SDLLIBS=`sdl-config --libs`
-
-CC=gcc
-DYNLD=ld -shared $(SDLLIBS) $(SDLGFXLIBS)
-
-CFILES=display draw mosgame util event
+CFILES=display draw mosgame util event image
 COBJS=$(foreach f, $(CFILES), obj/$f.o)
 
 
 all: libmosgame.so MosGame.ui MosGame.uo
 
 libmosgame.so: $(COBJS)
-	$(DYNLD) -o libmosgame.so $(COBJS)
+	$(DYNLD) $(DYNLDFLAGS) -o libmosgame.so $(COBJS)
 
 obj/%.o: C/%.c C/%.h C/general.h
 	@mkdir -p obj
@@ -37,6 +39,7 @@ clean:
 	rm -f obj/*.o
 	rm -f *.so
 	rm -f MosGame.sml MosGame.ui MosGame.uo
+	rm -f examples/loadsave/test.bmp
 
 test: all
 	mosml -P full test.sml
