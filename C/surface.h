@@ -3,9 +3,19 @@
 
 #include "general.h"
 
-// ML type: surface -> color -> unit
-// Fills the surface with the given color.
-EXTERNML value surface_fill(value wScreen, value wColor);
+enum AREA {
+    Full,
+    Partial
+};
 
+// ML type: surface -> color -> area -> unit
+// Fills the given area surface with the given color.
+EXTERNML value surface_fill(value wScreen, value wArea, value wColor);
+
+// ML type: surface -> area -> surface -> point -> unit
+// Draws the contents of wArea on wSource onto wTarget,
+// with top left corner in wTopLeft.
+EXTERNML value surface_blit(value wSource, value wArea,
+                            value wTarget, value wTopLeft);
 #endif
 
