@@ -6,7 +6,7 @@
 // Assumes that the pointer is alligned to a word boundary, and that the word
 // size is a multiple of 2.
 value Val_addr(void* addr) {
-    return (int)addr + 1;
+    return (long)addr + 1;
 }
 
 void* Addr_val(value val) {
