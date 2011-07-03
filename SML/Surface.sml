@@ -1,6 +1,6 @@
 structure Surface :> SURFACE =
 struct
-    type surface = int
+    type surface = Word.word
     datatype area = Full | Partial of point * dimensions
 
     val fill : surface -> area -> color -> unit =
