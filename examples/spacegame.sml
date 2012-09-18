@@ -96,7 +96,6 @@ fun updateState () = let
     val _ = if !rotateRight then shipRot := (!shipRot + 2) mod 72 else ()
     val _ = if !shoot then spawnBullet () else ()
     val _ = bullets := foldl moveBullets [] (!bullets)
-    val _ = print (Int.toString (length (!bullets)) ^ " bullets on screen.\n")
   in
     ()
   end
