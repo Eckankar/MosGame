@@ -12,9 +12,9 @@ SDLLIBS=`sdl-config --libs`
 SDLGFXLIBS=-lSDL_gfx
 SDLIMAGELIBS=-lSDL_image
 
-OPTS=-fno-defer-pop
+OPTS=-fno-defer-pop -fPIC -fno-stack-protector
 SDLFLAGS=`sdl-config --cflags`
-CFLAGS=-Dunix -O2 $(OPTS) -I$(MOSMLINCLUDES) $(SDLFLAGS)
+CFLAGS=-Dunix -O2 $(OPTS) -I$(MOSMLINCLUDES) $(SDLFLAGS) -std=c99
 DYNLDFLAGS=$(SDLLIBS) $(SDLGFXLIBS) $(SDLIMAGELIBS)
 
 CFILES=display draw mosgame util event image surface
