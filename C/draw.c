@@ -68,12 +68,8 @@ EXTERNML value draw_draw_rectangle(value wScreen, value wRect, value wColor) {
     if (Tag_val(wRect) == FilledRectangle) {
         boxRGBA(screen, x, y, x+w, y+h, colorr, colorg, colorb, colora);
     } else {
-        int size = Long_val(Field(wRect, 2));
-        int i;
-        for (i = 0; i < size; i++) {
-            rectangleRGBA(screen, x+i, y+i, x+w-i, y+h-i,
-                                  colorr, colorg, colorb, colora);
-        }
+        rectangleRGBA(screen, x, y, x+w, y+h,
+                              colorr, colorg, colorb, colora);
     }
 
     return Val_unit;

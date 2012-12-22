@@ -1,6 +1,6 @@
 structure Draw :> DRAW =
 struct
-    datatype rectangle = Rectangle of point * dimensions * int
+    datatype rectangle = Rectangle of point * dimensions
                        | FilledRectangle of point * dimensions
     datatype circle = Circle of point * int
                     | AntiAliasedCircle of point * int

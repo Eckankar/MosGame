@@ -4,10 +4,10 @@ sig
 type rectangle
 
 (* Creates a non-filled rectangle.
-   Input: ((x, y), (w, h), t)
+   Input: ((x, y), (w, h))
    The rectangle lies from (x, y) to (x+w-1, y+h-1), and has a
-   border-width of t. The border lies on the inside of the rectangle. *)
-val Rectangle : point * dimensions * int -> rectangle
+   border-width of 1. The border lies on the inside of the rectangle. *)
+val Rectangle : point * dimensions -> rectangle
 (* Creates a filled rectangle.
    Input: ((x, y), (w, h))
    The rectangle lies from (x, y) to (x+w-1, y+h-1) *)
