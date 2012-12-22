@@ -10,9 +10,6 @@ EXTERNML value mosgame_init(value null) {
         failwith(err);
     }
 
-    // make sure SDL cleans up before exit
-    atexit(SDL_Quit);
-
     return Val_unit;
 }
 
