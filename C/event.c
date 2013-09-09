@@ -449,6 +449,7 @@ int Event_val(SDL_Event *event, value *ret) {
         }
         case SDL_VIDEORESIZE: {
             Push_roots(res, 1);
+            res[0] = alloc(1, ResizeEvent);
 
             // First entry in event: New dimensions
             value dims = alloc_tuple(2);
