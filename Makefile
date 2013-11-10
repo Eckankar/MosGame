@@ -32,7 +32,7 @@ obj/%.o: C/%.c C/%.h C/general.h
 
 MosGame.uo MosGame.ui: SML/*.sig SML/*.sml SML/MosGame.mlp
 	$(CC) -E -P -x c SML/MosGame.mlp -o MosGame.sml
-	$(MOSMLC) -c -P full Dynlib.ui -toplevel MosGame.sml
+	$(MOSMLC) -liberal -c -P full Dynlib.ui -toplevel MosGame.sml
 	rm MosGame.sml
 
 clean:
