@@ -16,7 +16,7 @@ In order to compile the library, you need:
 * [SDL_gfx](http://www.ferzkopp.net/joomla/content/view/19/14/)
 * [SDL_image](http://www.libsdl.org/projects/SDL_image/)
 
-## Compliation + installation
+## Compilation + installation
 
 If you're running a unix-based system:
 
