@@ -1,10 +1,10 @@
 # Makefile for MLDraw
 
-MOSMLC=mosmlc
-CC=gcc
-DYNLD=ld -shared
+MOSMLC?=mosmlc
+CC?=gcc
+DYNLD?=ld -shared
 
-MOSMLINCLUDES=/home/sebbe/build/mosml/include
+MOSMLINCLUDES=/usr/include/mosml
 MOSMLLIB=/usr/lib/mosml
 NORMALLIB=/usr/lib
 

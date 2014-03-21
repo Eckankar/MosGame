@@ -1,5 +1,7 @@
 # MosGame 
 
+[![Build Status](https://travis-ci.org/Eckankar/MosGame.svg?branch=master)](https://travis-ci.org/Eckankar/MosGame)
+
 An attempt at making a game library for Moscow ML.
 
 It attempts to replicate the style of PyGame.
