@@ -4,7 +4,7 @@ structure M = MosGame;
 
 M.init ();
 
-val disp = M.Display.create_display (800, 600);
+val disp = M.Display.create_display (1000, 20);
 
 fun processEvents () = case M.Event.poll () of
     NONE => ()
@@ -12,7 +12,7 @@ fun processEvents () = case M.Event.poll () of
                  M.Event.QuitEvent => quit ()
                | _ => processEvents ())
 
-fun drawStep (1400, n) = M.Image.save disp "line-out.png"
+fun drawStep (1020, n) = M.Image.save disp "line-out.png"
   | drawStep (i, n) =
     let
         val step = (n div 255) mod 6
