@@ -3,9 +3,14 @@ compiler:
     - gcc
     - clang
 before_install:
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
     - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3055C3A2
     - echo "deb http://ppa.launchpad.net/pmunksgaard/mosml/ubuntu raring main" | sudo tee -a /etc/apt/sources.list
     - sudo apt-get update -qq
 install:
     - sudo apt-get install -y libsdl1.2-dev libsdl-image1.2-dev libsdl-gfx1.2-dev mosml
-script: make all
+script:
+    - make all && sudo make install-sym
+after_script:
+    - cd test && ./test.pl
