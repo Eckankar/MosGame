@@ -27,4 +27,5 @@ val _ = M.Draw.draw_rectangle disp overlappingRect transparentWhite
 val _ = M.Display.flip disp;
 val _ = M.Image.save disp "shapes-out.png";
 
+val _ = M.quit();
 val _ = quit();

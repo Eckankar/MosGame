@@ -34,4 +34,5 @@ fun drawStep (1020, n) = M.Image.save disp "line-out.png"
     end;
 
 val _ = drawStep (0, 0);
+val _ = M.quit();
 val _ = quit();
