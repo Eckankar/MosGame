@@ -5,6 +5,7 @@ use warnings;
 my @tests = qw(
     line
     shapes
+    blit
 );
 
 my $failed = 0;
