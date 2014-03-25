@@ -4,6 +4,7 @@ use warnings;
 
 my @tests = qw(
     line
+    shapes
 );
 
 my $failed = 0;
