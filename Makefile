@@ -15,7 +15,7 @@ SDLIMAGELIBS=-lSDL_image
 OPTS=-fno-defer-pop -fPIC -fno-stack-protector
 SDLFLAGS=`sdl-config --cflags`
 CFLAGS=-Dunix -O2 $(OPTS) -I$(MOSMLINCLUDES) $(SDLFLAGS) -std=c99
-DYNLDFLAGS=$(SDLLIBS) $(SDLGFXLIBS) $(SDLIMAGELIBS)
+DYNLDLIBS=$(SDLLIBS) $(SDLGFXLIBS) $(SDLIMAGELIBS)
 
 CFILES=display draw mosgame util event image surface
 COBJS=$(foreach f, $(CFILES), obj/$f.o)
@@ -24,7 +24,7 @@ COBJS=$(foreach f, $(CFILES), obj/$f.o)
 all: libmosgame.so MosGame.ui MosGame.uo
 
 libmosgame.so: $(COBJS)
-	$(DYNLD) $(DYNLDFLAGS) -o libmosgame.so $(COBJS)
+	$(DYNLD) -o libmosgame.so $(COBJS) $(DYNLDLIBS)
 
 obj/%.o: C/%.c C/%.h C/general.h
 	@mkdir -p obj
