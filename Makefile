@@ -1,4 +1,4 @@
-# Makefile for MLDraw
+# Makefile for MosGame
 
 MOSMLC?=mosmlc
 CC?=gcc
