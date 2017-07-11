@@ -4,7 +4,7 @@
 
 An attempt at making a game library for Moscow ML.
 
-It attempts to replicate the style of PyGame.
+It attempts to replicate the style of [PyGame](http://pygame.org).
 
 Note, this is very much alpha at this point, and the names and functionality is sure to be changed a lot as the library gets expanded.
 In short, don't rely on the interfaces staying the same until they're announced to be so.
