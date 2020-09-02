@@ -7,6 +7,8 @@ fun a $ b = a b
 structure M = MosGame;
 structure E = M.Event;
 
+val _ = M.init ();
+
 val boardWidth = 30
 val boardHeight = 16
 val initialMines = 99
